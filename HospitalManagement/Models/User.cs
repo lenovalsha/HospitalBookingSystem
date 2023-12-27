@@ -12,5 +12,12 @@ namespace HospitalManagement.Models
         public string LastName { get; set; }
 
         //userLevelId
+
+        public UserLevel UserLevel { get; set; } //0 for admin - 1 for doctocs/np - 2 for regular users
+        public int UserLevelId { get; set; }
+
+        public ICollection<Task> Tasks { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
+        public ICollection<Patient> Patients { get; set; }
     }
 }

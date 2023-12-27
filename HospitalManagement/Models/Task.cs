@@ -8,12 +8,10 @@
 
         public Category Category { get; set; }
         public int CategoryId { get; set; }
-
-
         //add patientID, DoctorsId,
         public Patient Patient { get; set; }
         public int PatientId { get; set; }
-        public Doctor Doctor { get; set; }
+        public User Doctor { get; set; }
         public string DoctorUsername { get; set; }
 
     }

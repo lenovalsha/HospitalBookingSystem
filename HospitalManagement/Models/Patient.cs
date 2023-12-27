@@ -14,8 +14,11 @@ namespace HospitalManagement.Models
         public string Phone { get; set; }
 
         //DoctorId
-        public Doctor Doctor { get; set; }
-        public string DoctorUsername { get; set; }
+        public User Doctor { get; set; }
+        public string UserUsername { get; set; } // where userLevel == doctors
+        public ICollection<Task> Tasks { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
+
 
     }
 }
