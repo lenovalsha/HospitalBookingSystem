@@ -1,4 +1,4 @@
-﻿namespace Hospital_Booking_System.Models
+﻿namespace HospitalManagement.Models
 {
     public class AppointmentType
     {

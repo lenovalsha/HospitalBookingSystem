@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Hospital_Booking_System.Models
+namespace HospitalManagement.Models
 {
     public class User
     {
