@@ -83,17 +83,23 @@ namespace HospitalManagement.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Postal = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserUsername = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    DoctorUsername = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patients", x => x.HSN);
                     table.ForeignKey(
-                        name: "FK_Patients_Users_UserUsername",
-                        column: x => x.UserUsername,
+                        name: "FK_Patients_Users_DoctorUsername",
+                        column: x => x.DoctorUsername,
                         principalTable: "Users",
                         principalColumn: "Username",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Patients_Users_Username",
+                        column: x => x.Username,
+                        principalTable: "Users",
+                        principalColumn: "Username");
                 });
 
             migrationBuilder.CreateTable(
@@ -106,7 +112,10 @@ namespace HospitalManagement.Migrations
                     DoctorUsername = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     AppointmentTypeId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AppointmentTypeId1 = table.Column<int>(type: "int", nullable: true),
+                    PatientHSN1 = table.Column<int>(type: "int", nullable: true),
+                    Username = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -115,20 +124,33 @@ namespace HospitalManagement.Migrations
                         name: "FK_Appointments_AppointmentTypes_AppointmentTypeId",
                         column: x => x.AppointmentTypeId,
                         principalTable: "AppointmentTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Appointments_AppointmentTypes_AppointmentTypeId1",
+                        column: x => x.AppointmentTypeId1,
+                        principalTable: "AppointmentTypes",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Appointments_Patients_PatientHSN",
                         column: x => x.PatientHSN,
                         principalTable: "Patients",
-                        principalColumn: "HSN",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "HSN");
+                    table.ForeignKey(
+                        name: "FK_Appointments_Patients_PatientHSN1",
+                        column: x => x.PatientHSN1,
+                        principalTable: "Patients",
+                        principalColumn: "HSN");
                     table.ForeignKey(
                         name: "FK_Appointments_Users_DoctorUsername",
                         column: x => x.DoctorUsername,
                         principalTable: "Users",
                         principalColumn: "Username",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Users_Username",
+                        column: x => x.Username,
+                        principalTable: "Users",
+                        principalColumn: "Username");
                 });
 
             migrationBuilder.CreateTable(
@@ -141,7 +163,8 @@ namespace HospitalManagement.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     PatientId = table.Column<int>(type: "int", nullable: false),
-                    DoctorUsername = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    DoctorUsername = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -162,14 +185,23 @@ namespace HospitalManagement.Migrations
                         name: "FK_Tasks_Users_DoctorUsername",
                         column: x => x.DoctorUsername,
                         principalTable: "Users",
-                        principalColumn: "Username",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Username");
+                    table.ForeignKey(
+                        name: "FK_Tasks_Users_Username",
+                        column: x => x.Username,
+                        principalTable: "Users",
+                        principalColumn: "Username");
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_AppointmentTypeId",
                 table: "Appointments",
                 column: "AppointmentTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_AppointmentTypeId1",
+                table: "Appointments",
+                column: "AppointmentTypeId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_DoctorUsername",
@@ -182,9 +214,24 @@ namespace HospitalManagement.Migrations
                 column: "PatientHSN");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Patients_UserUsername",
+                name: "IX_Appointments_PatientHSN1",
+                table: "Appointments",
+                column: "PatientHSN1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_Username",
+                table: "Appointments",
+                column: "Username");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patients_DoctorUsername",
                 table: "Patients",
-                column: "UserUsername");
+                column: "DoctorUsername");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patients_Username",
+                table: "Patients",
+                column: "Username");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_CategoryId",
@@ -200,6 +247,11 @@ namespace HospitalManagement.Migrations
                 name: "IX_Tasks_PatientId",
                 table: "Tasks",
                 column: "PatientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tasks_Username",
+                table: "Tasks",
+                column: "Username");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserLevelId",

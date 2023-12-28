@@ -1,6 +1,6 @@
 ﻿namespace HospitalManagement.Models
 {
-    public class Task
+    public class Tasks
     {
         public int Id { get; set; }
         public  string Name { get; set; }
@@ -11,8 +11,8 @@
         //add patientID, DoctorsId,
         public Patient Patient { get; set; }
         public int PatientId { get; set; }
-        public User User { get; set; }//Doctor
-        public string UserUsername { get; set; }
+        public User Doctor { get; set; }//Doctor
+        public string DoctorUsername { get; set; }
 
     }
 }

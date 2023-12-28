@@ -8,9 +8,8 @@ namespace HospitalManagement.Models
         public Patient Patient { get; set; }
         public int PatientHSN { get; set; }
 
-        [ForeignKey("UserUsername")]
-        public User? User { get; set; }//Doctors
-        public string? UserUsername { get; set; } 
+        public User Doctor { get; set; }//Doctors
+        public string DoctorUsername { get; set; } 
 
         public AppointmentType AppointmentType { get; set; }
         public int AppointmentTypeId { get; set; }

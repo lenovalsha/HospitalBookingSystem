@@ -12,30 +12,41 @@ namespace HospitalManagement.Data
         public DbSet<AppointmentType> AppointmentTypes { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Patient> Patients { get; set; }
-        public DbSet<Models.Task> Tasks { get; set; }
+        public DbSet<Models.Tasks> Tasks { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserLevel> UserLevels { get; set; }
 
         //this is for many to many table - I dont believe we have any
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Appointment>()
-        .HasOne(a => a.Patient)
-        .WithMany()
-        .HasForeignKey(a => a.PatientHSN)
-        .OnDelete(DeleteBehavior.NoAction);
+           modelBuilder.Entity<Appointment>()
+                .HasOne(a => a.Patient)
+                .WithMany()
+                .HasForeignKey(a => a.PatientHSN)
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.User)
+                .HasOne(a => a.Doctor)
                 .WithMany()
-                .HasForeignKey(a => a.UserUsername)
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasForeignKey(a => a.DoctorUsername)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Appointment>()
                 .HasOne(a => a.AppointmentType)
                 .WithMany()
                 .HasForeignKey(a => a.AppointmentTypeId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Tasks>()
+                .HasOne(a => a.Doctor)
+                .WithMany()
+                .HasForeignKey(a => a.DoctorUsername)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Patient>()
+               .HasOne(a => a.Doctor)
+               .WithMany()
+               .HasForeignKey(a => a.DoctorUsername)
+               .OnDelete(DeleteBehavior.Cascade);
             base.OnModelCreating(modelBuilder);
         }
 
