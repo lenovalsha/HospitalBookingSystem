@@ -2,6 +2,7 @@
 using HospitalManagement.Models;
 //using System.Diagnostics.Metrics;
 
+
 namespace HospitalManagement
 {
     public class Seed
@@ -24,9 +25,11 @@ namespace HospitalManagement
             new Category()
             {
                 Name = "Invest"
+                
             }
+           
         };
-
+                
                 dataContext.Categories.AddRange(categories);
                 dataContext.SaveChanges();
             }
