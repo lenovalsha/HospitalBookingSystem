@@ -1,9 +1,10 @@
 ﻿using HospitalManagement.Data;
+using HospitalManagement.Interfaces;
 using HospitalManagement.Models;
 
 namespace HospitalManagement.Repository
 {
-    public class CategoryRepository
+    public class CategoryRepository :ICategory
     {
         private readonly DataContext _context;
         public CategoryRepository(DataContext context)

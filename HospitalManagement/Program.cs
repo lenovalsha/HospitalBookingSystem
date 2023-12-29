@@ -1,5 +1,7 @@
 using HospitalManagement;
 using HospitalManagement.Data;
+using HospitalManagement.Interfaces;
+using HospitalManagement.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
@@ -25,7 +27,7 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DataContext"));
 });
 builder.Services.AddTransient<Seed>(); // add the injection/ object at the very begginning
-
+builder.Services.AddScoped<ICategory, CategoryRepository>();
 var app = builder.Build();
 
 //added this ===
