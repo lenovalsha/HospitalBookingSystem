@@ -2,8 +2,8 @@
 
 namespace HospitalManagement.Interfaces
 {
-    public interface ITasks
+    public interface IUser
     {
-        ICollection<Tasks> GetTasks();
+        ICollection<User> GetUsers();   
     }
 }

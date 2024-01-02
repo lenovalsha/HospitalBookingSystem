@@ -2,8 +2,8 @@
 
 namespace HospitalManagement.Interfaces
 {
-    public interface ITasks
+    public interface IAppointment
     {
-        ICollection<Tasks> GetTasks();
+        ICollection<Appointment> GetAppointments();
     }
 }
