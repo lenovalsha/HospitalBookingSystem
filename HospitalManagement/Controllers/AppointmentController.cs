@@ -16,7 +16,7 @@ namespace HospitalManagement.Controllers
             _appointment = appointment;
         }
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Category>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Appointment>))]
         public IActionResult GetAppointments()
         {
             var apt = _appointment.GetAppointments();

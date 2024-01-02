@@ -4,7 +4,7 @@ using HospitalManagement.Models;
 
 namespace HospitalManagement.Repository
 {
-    public class UserRepository:IUserLevel
+    public class UserRepository:IUser
     {
         private readonly DataContext _context;
 
@@ -13,9 +13,9 @@ namespace HospitalManagement.Repository
             _context = context;
         }
 
-        public ICollection<UserLevel> GetUserLevels()
+        public ICollection<User> GetUsers()
         {
-            return _context.UserLevels.OrderBy(x => x.Id).ToList();
+            return _context.Users.OrderBy(x => x.Username).ToList();
         }
     }
 }

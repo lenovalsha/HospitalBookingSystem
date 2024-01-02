@@ -1,4 +1,5 @@
 using HospitalManagement;
+using HospitalManagement.Controllers;
 using HospitalManagement.Data;
 using HospitalManagement.Interfaces;
 using HospitalManagement.Repository;
@@ -28,6 +29,18 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 builder.Services.AddTransient<Seed>(); // add the injection/ object at the very begginning
 builder.Services.AddScoped<ICategory, CategoryRepository>();
+builder.Services.AddScoped<IAppointmentType, AppointmentTypeRepository>();
+builder.Services.AddScoped<IAppointment, AppointmentRepository>();
+builder.Services.AddScoped<IPatient, PatientRepository>();
+builder.Services.AddScoped<ITasks, TaskRepository>();
+builder.Services.AddScoped<IUser, UserRepository>();
+builder.Services.AddScoped<IUserLevel, UserLevelRepository>();
+
+
+
+
+
+
 var app = builder.Build();
 
 //added this ===

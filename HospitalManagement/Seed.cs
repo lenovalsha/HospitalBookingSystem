@@ -17,19 +17,18 @@ namespace HospitalManagement
             if (!dataContext.Categories.Any())
             {
                 var categories = new List<Category>()
-        {
-            new Category()
             {
-                Name = "Consult"
-            },
-            new Category()
-            {
-                Name = "Invest"
-                
-            }
+                new Category()
+                {
+                    Name = "Consult"
+                },
+                new Category()
+                {
+                    Name = "Invest"
+                    
+                }
            
-        };
-                
+            };
                 dataContext.Categories.AddRange(categories);
                 dataContext.SaveChanges();
             }
