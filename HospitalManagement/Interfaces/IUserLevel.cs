@@ -1,7 +1,9 @@
-﻿namespace HospitalManagement.Interfaces
+﻿using HospitalManagement.Models;
+
+namespace HospitalManagement.Interfaces
 {
     public interface IUserLevel
     {
-        ICollection<IUserLevel> GetUserLevels { get; }
+        ICollection<UserLevel> GetUserLevels();
     }
 }
