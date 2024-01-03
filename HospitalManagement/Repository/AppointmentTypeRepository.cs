@@ -12,6 +12,16 @@ namespace HospitalManagement.Repository
             _context = context;
         }
 
+        public AppointmentType GetAppointmentTypeById(int id)
+        {
+            return _context.AppointmentTypes.Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public AppointmentType GetAppointmentTypeByName(string name)
+        {
+            return _context.AppointmentTypes.Where(x => x.Type == name).FirstOrDefault();
+        }
+
         public ICollection<AppointmentType> GetAppointmentTypes()
         {
             return _context.AppointmentTypes.OrderBy(p => p.Id).ToList();
