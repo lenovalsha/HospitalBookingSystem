@@ -26,7 +26,7 @@ namespace HospitalManagement.Repository
 
         public bool IsAppointmentExist(int id)
         {
-            return _context.Appointments.Where(p=> p.Id == id).Any();
+            return _context.Appointments.Any(x=>x.Id==id);
         }
 
         public Appointment GetAppointment(int id)

@@ -8,5 +8,6 @@ namespace HospitalManagement.Interfaces
         AppointmentType GetAppointmentTypeById(int id);
         AppointmentType GetAppointmentTypeByName(string name);
 
+        bool AppointmentTypeExist (int id);  
     }
 }

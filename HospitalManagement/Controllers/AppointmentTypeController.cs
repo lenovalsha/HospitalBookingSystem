@@ -14,7 +14,7 @@ namespace HospitalManagement.Controllers
             _appointmentType = appointmentType;
         }
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<AppointmentType>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<AppointmentType>))] //makes api endpoint look cleaner // serves no other purpose
         public IActionResult GetAppointmentTypes() 
         {
             var at = _appointmentType.GetAppointmentTypes();
@@ -22,5 +22,18 @@ namespace HospitalManagement.Controllers
                 return BadRequest(ModelState);
             return Ok(at);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetAppointmentTypeById(int id)
+        {
+            if(!_appointmentType.AppointmentTypeExist(id))
+                return NotFound();
+            var aptType = _appointmentType.GetAppointmentTypeById(id);
+
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+            return Ok(aptType);
+        }
+        [HttpGet("{id}")]
     }
 }
